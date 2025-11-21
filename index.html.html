@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevare – Group 3</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+
+    <style>
+      .about-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    border: 3px solid #7db4d8;
+    border-radius: 12px;
+    padding: 20px;
+    background: #f5fbff;
+}
+
+.about-img {
+    width: 180px;
+    height: auto;
+    border-radius: 12px;
+    border: 2px solid #aacbe3;
+}
+
+.about-text {
+    flex: 1;
+    font-size: 20px;
+}
+
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #d5efff;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background-color: #3e302a;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 50;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            font-size: 22px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+
+        .nav-links li a:hover {
+            background-color: #564a45;
+            border-radius: 6px;
+        }
+
+        /* PULL TAB */
+        .pull-tab {
+            width: 180px;
+            background: #ffffff;
+            padding: 15px;
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* OPTIONAL IMAGE on the pull tab */
+        .pull-img {
+            width: 120px;
+            margin: 0 auto -5px;
+        }
+
+        /* Hinge effect (small line on top) */
+        .hinge {
+            width: 40px;
+            height: 6px;
+            background-color: #666;
+            border-radius: 3px;
+            margin: 0 auto 5px;
+        }
+
+       /* WHITEBOARD PANEL */
+.whiteboard {
+    width: 90%;
+    height: 0;
+    overflow-y: auto; /* changed from hidden */
+    background: #ffffff;
+    border: 4px solid #7db4d8;
+    border-radius: 15px;
+    margin: 0 auto;
+    transition: height 0.5s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+        /* WHITEBOARD INSIDE CONTENT */
+        .whiteboard-content {
+            padding: 40px;
+        }
+
+        /* INTERNAL TABS (HOME | OUTLINE | PROMOTION | ABOUT US) */
+        .inner-tabs {
+            display: flex;
+            gap: 30px;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .inner-tabs div {
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .inner-tabs .active {
+            background-color: #d5efff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="logo">ELEVARE</div>
+        <ul class="nav-links">
+            <li><a></a></li>
+            <li><a></li>
+            <li><a></a></li>
+            <li><a></a></li>
+        </ul>
+    </nav>
+
+    <!-- WHITEBOARD PANEL -->
+    <div class="whiteboard" id="whiteboard">
+        <div class="whiteboard-content">
+
+            <!-- Internal tabs -->
+            <div class="inner-tabs">
+                <div class="inner-btn active" data-page="home">HOME</div>
+                <div class="inner-btn" data-page="outline">OUTLINE</div>
+                <div class="inner-btn" data-page="promo">PROMOTION</div>
+                <div class="inner-btn" data-page="about">ABOUT US</div>
+            </div>
+
+            <!-- Dynamic Content -->
+            <div id="tabContent" style="font-size:20px;">
+                Welcome to Elevare!  
+            </div>
+
+        </div>
+    </div>
+
+        <!-- PULL TAB (with image support) -->
+    <div class="pull-tab" id="pullTab">
+        <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t1.15752-9/588219287_836301865763446_6359924068664242518_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGjJUVc2kVTZUwPjEc1c4qDfF3u0M10bzp8Xe7QzXRvOhDZWH3B4LZS0FYCK80TlL8lidRN_iVMMmXmu98-6pDv&_nc_ohc=3OwP-BoVxXYQ7kNvwHLO8Am&_nc_oc=AdkOhKEZPjz1DQJzC_LPaxwRlqlVOD1zUTZ9dPpin06VsLDSXhk2acfhh86720iqdz-45VpCrMReHY_Iq-W0sB_h&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&oh=03_Q7cD3wGOAYmi9fjJjLADk9PbKLmffxaCyQEFbq3hpsMuZXOycA&oe=6947E411" class="pull-img"> <!-- CHANGE THIS TO YOUR IMAGE -->
+        <div class="hinge"></div>
+        <p>Pull Down</p>
+    </div>
+
+    <script>
+        let open = false;
+
+// Pull Tab Function
+const pullTab = document.getElementById("pullTab");
+const whiteboard = document.getElementById("whiteboard");
+
+pullTab.addEventListener("click", () => {
+    open = !open;
+    whiteboard.style.height = open ? "500px" : "0px"; // content exceeding 500px will now scroll
+});
+
+// Internal tab switching
+const buttons = document.querySelectorAll(".inner-btn");
+const tabContent = document.getElementById("tabContent");
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const page = btn.getAttribute("data-page");
+
+        switch(page) {
+    case "home":
+        tabContent.innerHTML = `
+            Hi hii! We're Group 5, the team behind Elevare, our stream where creativity meets conversation. 
+            Along with our awesome members Angeles, Madrigal, Nalangan, Omagtang, Perez, and Razon, we aim to explore how art can help break mental health stigma and inspire self-expression.
+        `;
+        break;
+
+    case "outline":
+        tabContent.innerHTML = `
+            <h2>Stream Concept</h2>
+            <p>Our stream, <strong>"Canvas in Mind"</strong> (placeholder), dives into the connection between creativity and mental health. 
+            We feature live discussions, art showcases, and creative sessions—including painting, music, poetry, and digital art—where artists openly share their mental health journeys.</p>
+
+            <h2>Goals (SMART)</h2>
+            <ul>
+                <li><strong>Specific:</strong> Create an online space where artists and viewers discuss mental health through creativity.</li>
+                <li><strong>Measurable:</strong> Reach 50 total views and 10 active followers within a month.</li>
+                <li><strong>Achievable:</strong> Stream once a week for 1 hour or less, featuring at least one guest per week.</li>
+                <li><strong>Relevant:</strong> Support our thesis goal of spreading awareness about mental health stigma and how creative expression helps reduce it.</li>
+                <li><strong>Time-Bound:</strong> Launch by [insert date] and track progress weekly for 1 month.</li>
+            </ul>
+
+            <h2>Stream Outline</h2>
+            <table border="1" cellpadding="5">
+                <tr><th>Time</th><th>Topic</th><th>Activity</th><th>Duration</th></tr>
+                <tr><td>1:30 PM</td><td>Introduction of Members</td><td>Show PNGs and online names</td><td>5 min</td></tr>
+                <tr><td>1:35 PM</td><td>Introduction of the Game</td><td>Gartic Phone rules explanation</td><td>5 min</td></tr>
+                <tr><td>2:00 PM</td><td>Start of the Game</td><td>Game session begins</td><td>25 min</td></tr>
+                <tr><td>2:05–2:10 PM</td><td>Commercial Break</td><td>Short break</td><td>5–10 min</td></tr>
+                <tr><td>2:35 PM</td><td>Continuation of the Game</td><td>Game continues</td><td>25 min</td></tr>
+                <tr><td>2:40 PM</td><td>Winner Results & Outro</td><td>Announce winner & closing remarks</td><td>5 min</td></tr>
+            </table>
+        `;
+        break;
+
+    case "promo":
+        tabContent.innerHTML = `
+            <h2>Promotion</h2>
+            <p>🎨✨ <strong>COMING SOON!</strong> ✨🎨</p>
+            <p>Join us on <strong>MindCanvas</strong>, a live stream where creativity meets mental health conversations! Paint, play, and share your thoughts with us every week. 🌈💭</p>
+            <p>Follow us for updates, sneak peeks, and guest announcements! #MindCanvas #ArtMeetsMind #CreativeHealing</p>
+        `;
+        break;
+
+    case "about":
+        tabContent.innerHTML = `
+            <div class="about-container">
+                <img src="https://i.imgur.com/joC02y6.jpeg" class="about-img">
+                <div class="about-text">
+                    <h2>Randross Blake Angeles</h2>
+                    <p>
+                        Hi! I’m Blake! or Chino. I like music, the color blue, snacks, and occasionally have ideas that are actually good heh (¬‿¬)
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-container">
+                <img src="https://i.imgur.com/n8PmNBj.jpeg" class="about-img">
+                <div class="about-text">
+                    <h2>Miles Lerean Madrigal</h2>
+                    <p>
+                        Hi i'm Miles! First of all, I am Miles, Second of all, You're not miles! Third of all yuwanbemilesbutyukentbemilesbecausiammiles
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-container">
+                <img src="https://i.imgur.com/1ndx6Di.jpeg" class="about-img">
+                <div class="about-text">
+                    <h2>Princez Mae Nalangan</h2>
+                    <p>
+                        Hiihiiii I'm byu, and I like the color blue, sweets, and 007n7✌️
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-container">
+                <img src="https://i.imgur.com/9KPuh2S.jpeg" class="about-img">
+                <div class="about-text">
+                    <h2>Queen Akiesha Joy Razon</h2>
+                    <p>
+                        I kiss vampires 🧛‍♀️
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-container">
+                <img src="https://i.imgur.com/BEOPd7w.jpeg" class="about-img">
+                <div class="about-text">
+                    <h2>Francis Jann Omagtang</h2>
+                    <p>
+                        Hello, I’m the smirkiest and most charming one 😏
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-container">
+                <img src="https://i.imgur.com/j9KQqRZ.jpeg" class="about-img">
+                <div class="about-text">
+                    <h2>Chloe Angeline Perez</h2>
+                    <p>
+                        Placeholder
+                    </p>
+                </div>
+            </div>
+        `;
+        break;
+}
+
+    });
+});
+
+    </script>
+
+</body>
+</html>
